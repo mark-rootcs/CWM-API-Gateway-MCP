@@ -52,7 +52,7 @@ This Model Context Protocol (MCP) server provides a comprehensive interface for 
    CONNECTWISE_COMPANY_ID=your_company_id
    CONNECTWISE_PUBLIC_KEY=your_public_key
    CONNECTWISE_PRIVATE_KEY=your_private_key
-   CONNECTWISE_AUTH_PREFIX=yourprefix+  # Optional: prefix added before public key in auth header
+   CONNECTWISE_AUTH_PREFIX=yourprefix+  # Prefix required by ConnectWise for API authentication
    ```
 
    These credentials are used in the authentication process as follows:
@@ -74,7 +74,7 @@ This Model Context Protocol (MCP) server provides a comprehensive interface for 
      credentials = f"{username}:{password}"  # Combined into "yourprefix+your_public_key:your_private_key"
      ```
    
-   - **CONNECTWISE_AUTH_PREFIX**: Optional prefix added before your public key in the authentication username
+   - **CONNECTWISE_AUTH_PREFIX**: Required prefix added before your public key in the authentication username. ConnectWise API requires this prefix to identify the type of integration (e.g., "api+", "integration+", etc.)
 
    The final HTTP headers sent with every request will look like:
    ```
