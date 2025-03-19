@@ -23,14 +23,14 @@ This Model Context Protocol (MCP) server provides a comprehensive interface for 
 
 - Python 3.10 or higher
 - Access to ConnectWise Manage API credentials
-- ConnectWise API definition file (`manage.json`)
+- ConnectWise API definition file (`manage.json`) - included in the repository
 
 ### Installation Steps
 
 1. **Clone or download the repository:**
    ```bash
-   git clone https://github.com/yourusername/cwm-api-gateway-mcp.git
-   cd cwm-api-gateway-mcp
+   git clone https://github.com/jasondsmith72/CWM-API-Gateway-MCP.git
+   cd CWM-API-Gateway-MCP
    ```
 
 2. **Install the package:**
@@ -39,7 +39,7 @@ This Model Context Protocol (MCP) server provides a comprehensive interface for 
    ```
 
 3. **Build the API Database:**
-   Before using the server, you need to build the API database from the ConnectWise API definition file:
+   This repository already includes a pre-built database, so this step is optional. Only run this if you need to use a newer ConnectWise API definition file:
    ```bash
    python build_database.py path/to/manage.json
    ```
