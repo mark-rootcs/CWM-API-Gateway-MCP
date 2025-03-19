@@ -64,7 +64,7 @@ To integrate with Claude Desktop, add the following to your configuration file (
   "mcpServers": {
     "api_gateway": {
       "command": "python",
-      "args": ["path/to/api_gateway_server.py"],
+      "args": ["C:/path/to/CWM-API-Gateway-MCP/api_gateway_server.py"],
       "env": {
         "CONNECTWISE_API_URL": "https://your-instance.connectwise.com/v4_6_release/apis/3.0",
         "CONNECTWISE_COMPANY_ID": "your_company_id",
