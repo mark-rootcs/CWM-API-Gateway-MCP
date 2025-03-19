@@ -227,6 +227,49 @@ def check_fast_memory(path: str, method: str) -> Optional[Dict[str, Any]]:
     current_query_from_fast_memory = False
     return None
 
+def format_endpoint_for_saving(method: str, path: str, params: Optional[Dict[str, Any]] = None, data: Optional[Dict[str, Any]] = None) -> str:
+    """
+    Format endpoint details in a way that can be easily referenced and saved
+    
+    Args:
+        method: HTTP method
+        path: API endpoint path
+        params: Query parameters
+        data: Request body data
+    
+    Returns:
+        Formatted string representation of the endpoint call
+    """
+    formatted = f"Endpoint: {method.upper()} {path}\n"
+    
+    if params:
+        formatted += "\nQuery Parameters:\n"
+        formatted += json.dumps(params, indent=2)
+    
+    if data:
+        formatted += "\nRequest Body:\n"
+        formatted += json.dumps(data, indent=2)
+        
+    formatted += "\n\nTo save this endpoint to Fast Memory:"
+    formatted += "\n```"
+    formatted += f"\nsave_to_fast_memory("
+    formatted += f"\n    path=\"{path}\","
+    formatted += f"\n    method=\"{method}\","
+    formatted += f"\n    description=\"YOUR DESCRIPTION HERE\","
+    
+    if params:
+        formatted += f"\n    params={json.dumps(params)}"
+    else:
+        formatted += "\n    params=None"
+        
+    if data:
+        formatted += f",\n    data={json.dumps(data)}"
+    
+    formatted += "\n)"
+    formatted += "\n```"
+    
+    return formatted
+
 # MCP Tool Implementations
 
 @mcp.tool()
@@ -351,7 +394,9 @@ async def execute_api_call(
         
         # If the query was successful and not from Fast Memory, ask if the user wants to save it
         if not current_query_from_fast_memory:
-            response += "\n\nWould you like to save this query to Fast Memory for quicker access in the future? Reply 'yes' with a description to save it."
+            # Add a section that shows the endpoint details for easy reference and saving
+            endpoint_details = format_endpoint_for_saving(method, path, params, data)
+            response += f"\n\n=== SUCCESSFUL API CALL ===\n{endpoint_details}\n\nWould you like to save this query to Fast Memory for quicker access in the future? You can use the save_to_fast_memory function above or reply with a description."
         else:
             # Reset the flag
             current_query_from_fast_memory = False
@@ -599,6 +644,7 @@ async def list_fast_memory(search_term: Optional[str] = None) -> str:
             
             formatted_queries.append(
                 f"{i}. {query['description']}\n"
+                f"   ID: {query['id']}\n"
                 f"   Path: {query['method'].upper()} {query['path']}\n"
                 f"   Usage Count: {query['usage_count']}\n"
                 f"   Parameters: {params_str}\n"
@@ -609,6 +655,7 @@ async def list_fast_memory(search_term: Optional[str] = None) -> str:
         response += "\n\n".join(formatted_queries)
         
         response += "\n\nTo use a query from Fast Memory, use execute_api_call with the same path and method."
+        response += "\nTo delete a query, use delete_from_fast_memory with the query ID."
         
         return response
     
