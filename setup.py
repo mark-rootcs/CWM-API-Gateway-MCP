@@ -1,7 +1,7 @@
 from setuptools import setup, find_packages
 
 setup(
-    name="mcp-server-api-gateway",
+    name="cwm-api-gateway-mcp",
     version="0.1.0",
     description="Model Context Protocol server for general API gateway to ConnectWise Manage",
     author="Jason Smith",
@@ -15,7 +15,7 @@ setup(
     ],
     entry_points={
         "console_scripts": [
-            "mcp-server-api-gateway=api_gateway_server:main",
+            "cwm-api-gateway-mcp=api_gateway_server:main",
         ],
     },
 )
