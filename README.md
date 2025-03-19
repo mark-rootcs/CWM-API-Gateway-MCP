@@ -54,14 +54,30 @@ This Model Context Protocol (MCP) server provides a comprehensive interface for 
    CONNECTWISE_PRIVATE_KEY=your_private_key
    CONNECTWISE_AUTH_PREFIX=yourprefix+  # Optional: prefix added before public key in auth header
    ```
-   Note: `CONNECTWISE_AUTH_PREFIX` is used to form the username for basic authentication. If your ConnectWise API integration requires a specific prefix before the public key, set it here. If not needed, you can leave it blank.
 
-   With these credentials, the authentication header is constructed as follows:
-   ```
-   username = "yourprefix+your_public_key"
-   credentials = "yourprefix+your_public_key:your_private_key"
+   These credentials are used in the authentication process as follows:
    
-   HTTP Headers:
+   - **CONNECTWISE_API_URL**: The base URL for all API requests to your ConnectWise instance
+     ```
+     url = f"{API_URL}{endpoint}"  # e.g., https://your-instance.connectwise.com/v4_6_release/apis/3.0/service/tickets
+     ```
+   
+   - **CONNECTWISE_COMPANY_ID**: Included in the 'clientId' header of each request to identify your company
+     ```
+     headers = {'clientId': COMPANY_ID, ...}
+     ```
+   
+   - **CONNECTWISE_PUBLIC_KEY** and **CONNECTWISE_PRIVATE_KEY**: Used together with AUTH_PREFIX to create the basic authentication credentials
+     ```
+     username = f"{AUTH_PREFIX}{PUBLIC_KEY}"  # e.g., "yourprefix+your_public_key"
+     password = PRIVATE_KEY
+     credentials = f"{username}:{password}"  # Combined into "yourprefix+your_public_key:your_private_key"
+     ```
+   
+   - **CONNECTWISE_AUTH_PREFIX**: Optional prefix added before your public key in the authentication username
+
+   The final HTTP headers sent with every request will look like:
+   ```
    'Authorization': 'Basic [base64 encoded credentials]'
    'clientId': 'your_company_id'
    'Content-Type': 'application/json'
