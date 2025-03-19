@@ -27,6 +27,8 @@ This Model Context Protocol (MCP) server provides a comprehensive interface for 
 
 ### Installation Steps
 
+#### Windows
+
 1. **Clone or download the repository:**
    ```bash
    git clone https://github.com/jasondsmith72/CWM-API-Gateway-MCP.git
@@ -34,6 +36,67 @@ This Model Context Protocol (MCP) server provides a comprehensive interface for 
    ```
 
 2. **Install the package:**
+   ```bash
+   pip install -e .
+   ```
+
+#### macOS
+
+1. **Install Python 3.10+ if not already installed:**
+   ```bash
+   # Using Homebrew
+   brew install python@3.10
+   
+   # Or using pyenv
+   brew install pyenv
+   pyenv install 3.10.0
+   pyenv global 3.10.0
+   ```
+
+2. **Clone the repository:**
+   ```bash
+   git clone https://github.com/jasondsmith72/CWM-API-Gateway-MCP.git
+   cd CWM-API-Gateway-MCP
+   ```
+
+3. **Set up a virtual environment (recommended):**
+   ```bash
+   python3 -m venv venv
+   source venv/bin/activate
+   ```
+
+4. **Install the package:**
+   ```bash
+   pip install -e .
+   ```
+
+#### Linux (Ubuntu/Debian)
+
+1. **Install Python 3.10+ if not already installed:**
+   ```bash
+   # For Ubuntu 22.04+
+   sudo apt update
+   sudo apt install python3.10 python3.10-venv python3.10-dev python3-pip
+   
+   # For older versions of Ubuntu/Debian
+   sudo add-apt-repository ppa:deadsnakes/ppa
+   sudo apt update
+   sudo apt install python3.10 python3.10-venv python3.10-dev python3-pip
+   ```
+
+2. **Clone the repository:**
+   ```bash
+   git clone https://github.com/jasondsmith72/CWM-API-Gateway-MCP.git
+   cd CWM-API-Gateway-MCP
+   ```
+
+3. **Set up a virtual environment (recommended):**
+   ```bash
+   python3.10 -m venv venv
+   source venv/bin/activate
+   ```
+
+4. **Install the package:**
    ```bash
    pip install -e .
    ```
@@ -93,6 +156,26 @@ To integrate with Claude Desktop, add the following to your configuration file (
     "api_gateway": {
       "command": "python",
       "args": ["C:/path/to/CWM-API-Gateway-MCP/api_gateway_server.py"],
+      "env": {
+        "CONNECTWISE_API_URL": "https://your-instance.connectwise.com/v4_6_release/apis/3.0",
+        "CONNECTWISE_COMPANY_ID": "your_company_id",
+        "CONNECTWISE_PUBLIC_KEY": "your_public_key",
+        "CONNECTWISE_PRIVATE_KEY": "your_private_key",
+        "CONNECTWISE_AUTH_PREFIX": "yourprefix+"
+      }
+    }
+  }
+}
+```
+
+For macOS and Linux, use the appropriate path format:
+
+```json
+{
+  "mcpServers": {
+    "api_gateway": {
+      "command": "python3",
+      "args": ["/path/to/CWM-API-Gateway-MCP/api_gateway_server.py"],
       "env": {
         "CONNECTWISE_API_URL": "https://your-instance.connectwise.com/v4_6_release/apis/3.0",
         "CONNECTWISE_COMPANY_ID": "your_company_id",
