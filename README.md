@@ -101,50 +101,62 @@ This Model Context Protocol (MCP) server provides a comprehensive interface for 
    pip install -e .
    ```
 
-3. **Build the API Database:**
-   This repository already includes a pre-built database, so this step is optional. Only run this if you need to use a newer ConnectWise API definition file:
-   ```bash
-   python build_database.py path/to/manage.json
-   ```
-   This step only needs to be done once, or whenever the ConnectWise API definition changes.
+### Post-Installation Steps
 
-4. **Configure API Credentials:**
-   Set the following environment variables with your ConnectWise credentials:
-   ```
-   CONNECTWISE_API_URL=https://your-instance.connectwise.com/v4_6_release/apis/3.0
-   CONNECTWISE_COMPANY_ID=your_company_id
-   CONNECTWISE_PUBLIC_KEY=your_public_key
-   CONNECTWISE_PRIVATE_KEY=your_private_key
-   CONNECTWISE_AUTH_PREFIX=yourprefix+  # Prefix required by ConnectWise for API authentication
-   ```
+After installing on any platform (Windows, macOS, or Linux), complete the following steps:
 
-   These credentials are used in the authentication process as follows:
-   
-   - **CONNECTWISE_API_URL**: The base URL for all API requests to your ConnectWise instance
-     ```
-     url = f"{API_URL}{endpoint}"  # e.g., https://your-instance.connectwise.com/v4_6_release/apis/3.0/service/tickets
-     ```
-   
-   - **CONNECTWISE_COMPANY_ID**: Included in the 'clientId' header of each request to identify your company
-     ```
-     headers = {'clientId': COMPANY_ID, ...}
-     ```
-   
-   - **CONNECTWISE_PUBLIC_KEY** and **CONNECTWISE_PRIVATE_KEY**: Used together with AUTH_PREFIX to create the basic authentication credentials
-     ```
-     username = f"{AUTH_PREFIX}{PUBLIC_KEY}"  # e.g., "yourprefix+your_public_key"
-     password = PRIVATE_KEY
-     credentials = f"{username}:{password}"  # Combined into "yourprefix+your_public_key:your_private_key"
-     ```
-   
-   - **CONNECTWISE_AUTH_PREFIX**: Required prefix added before your public key in the authentication username. ConnectWise API requires this prefix to identify the type of integration (e.g., "api+", "integration+", etc.)
+#### 1. (Optional) Build the API Database
 
-   The final HTTP headers sent with every request will look like:
-   ```
-   'Authorization': 'Basic [base64 encoded credentials]'
-   'clientId': 'your_company_id'
-   'Content-Type': 'application/json'
-   ```
+This repository already includes a pre-built database, so this step is optional. Only run this if you need to use a newer ConnectWise API definition file:
+
+```bash
+# On Windows
+python build_database.py path/to/manage.json
+
+# On macOS/Linux
+python3 build_database.py path/to/manage.json
+```
+
+This step only needs to be done once, or whenever the ConnectWise API definition changes.
+
+#### 2. Configure API Credentials
+
+Set the following environment variables with your ConnectWise credentials:
+```
+CONNECTWISE_API_URL=https://your-instance.connectwise.com/v4_6_release/apis/3.0
+CONNECTWISE_COMPANY_ID=your_company_id
+CONNECTWISE_PUBLIC_KEY=your_public_key
+CONNECTWISE_PRIVATE_KEY=your_private_key
+CONNECTWISE_AUTH_PREFIX=yourprefix+  # Prefix required by ConnectWise for API authentication
+```
+
+These credentials are used in the authentication process as follows:
+
+- **CONNECTWISE_API_URL**: The base URL for all API requests to your ConnectWise instance
+  ```
+  url = f"{API_URL}{endpoint}"  # e.g., https://your-instance.connectwise.com/v4_6_release/apis/3.0/service/tickets
+  ```
+
+- **CONNECTWISE_COMPANY_ID**: Included in the 'clientId' header of each request to identify your company
+  ```
+  headers = {'clientId': COMPANY_ID, ...}
+  ```
+
+- **CONNECTWISE_PUBLIC_KEY** and **CONNECTWISE_PRIVATE_KEY**: Used together with AUTH_PREFIX to create the basic authentication credentials
+  ```
+  username = f"{AUTH_PREFIX}{PUBLIC_KEY}"  # e.g., "yourprefix+your_public_key"
+  password = PRIVATE_KEY
+  credentials = f"{username}:{password}"  # Combined into "yourprefix+your_public_key:your_private_key"
+  ```
+
+- **CONNECTWISE_AUTH_PREFIX**: Required prefix added before your public key in the authentication username. ConnectWise API requires this prefix to identify the type of integration (e.g., "api+", "integration+", etc.)
+
+The final HTTP headers sent with every request will look like:
+```
+'Authorization': 'Basic [base64 encoded credentials]'
+'clientId': 'your_company_id'
+'Content-Type': 'application/json'
+```
 
 ## Configuration for Claude Desktop
 
@@ -191,7 +203,11 @@ For macOS and Linux, use the appropriate path format:
 The server can be run directly from the command line for testing:
 
 ```bash
+# On Windows
 python api_gateway_server.py
+
+# On macOS/Linux
+python3 api_gateway_server.py
 ```
 
 ## Available Tools
