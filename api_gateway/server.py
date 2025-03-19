@@ -44,7 +44,7 @@ API_URL = None  # Will be set from environment
 COMPANY_ID = None
 PUBLIC_KEY = None
 PRIVATE_KEY = None
-AUTH_PREFIX = None  # Will be set from environment (e.g., "microtech+")
+AUTH_PREFIX = None  # Will be set from environment
 DB_PATH = os.path.join(os.path.dirname(os.path.abspath(__file__)), "connectwise_api.db")
 FAST_MEMORY_DB_PATH = os.path.join(os.path.dirname(os.path.abspath(__file__)), "fast_memory_api.db")
 api_db = None
@@ -71,7 +71,7 @@ def setup_config():
     COMPANY_ID = os.environ.get('CONNECTWISE_COMPANY_ID')
     PUBLIC_KEY = os.environ.get('CONNECTWISE_PUBLIC_KEY')
     PRIVATE_KEY = os.environ.get('CONNECTWISE_PRIVATE_KEY')
-    AUTH_PREFIX = os.environ.get('CONNECTWISE_AUTH_PREFIX', 'microtech+')
+    AUTH_PREFIX = os.environ.get('CONNECTWISE_AUTH_PREFIX', '')
     
     logger.info("ConnectWise API Configuration:")
     logger.info(f"API_URL: {API_URL}")
@@ -121,7 +121,7 @@ def get_auth_header():
     if not all([COMPANY_ID, PUBLIC_KEY, PRIVATE_KEY]):
         raise APIError("ConnectWise API configuration incomplete. Check environment variables.")
     
-    # Use the configurable prefix (default: "microtech+")
+    # Use the configurable prefix
     username = f"{AUTH_PREFIX}{PUBLIC_KEY}"
     password = PRIVATE_KEY
     
