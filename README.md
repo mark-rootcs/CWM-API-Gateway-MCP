@@ -165,7 +165,7 @@ To integrate with Claude Desktop, add the following to your configuration file (
 ```json
 {
   "mcpServers": {
-    "api_gateway": {
+    "CWM-API-Gateway-MCP": {
       "command": "python",
       "args": ["C:/path/to/CWM-API-Gateway-MCP/api_gateway_server.py"],
       "env": {
@@ -185,7 +185,7 @@ For macOS and Linux, use the appropriate path format:
 ```json
 {
   "mcpServers": {
-    "api_gateway": {
+    "CWM-API-Gateway-MCP": {
       "command": "python3",
       "args": ["/path/to/CWM-API-Gateway-MCP/api_gateway_server.py"],
       "env": {
