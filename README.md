@@ -56,6 +56,17 @@ This Model Context Protocol (MCP) server provides a comprehensive interface for 
    ```
    Note: `CONNECTWISE_AUTH_PREFIX` is used to form the username for basic authentication. If your ConnectWise API integration requires a specific prefix before the public key, set it here. If not needed, you can leave it blank.
 
+   With these credentials, the authentication header is constructed as follows:
+   ```
+   username = "yourprefix+your_public_key"
+   credentials = "yourprefix+your_public_key:your_private_key"
+   
+   HTTP Headers:
+   'Authorization': 'Basic [base64 encoded credentials]'
+   'clientId': 'your_company_id'
+   'Content-Type': 'application/json'
+   ```
+
 ## Configuration for Claude Desktop
 
 To integrate with Claude Desktop, add the following to your configuration file (`claude_desktop_config.json`):
