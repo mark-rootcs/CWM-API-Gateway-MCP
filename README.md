@@ -27,7 +27,19 @@ This Model Context Protocol (MCP) server provides a comprehensive interface for 
 
 ### Installation Steps
 
-#### Windows
+#### Option 1: Using GitHub NPM Package (Recommended)
+
+You can install the package directly from GitHub:
+
+```bash
+npm install -g jasondsmith72/CWM-API-Gateway-MCP
+```
+
+This method automatically handles all dependencies and provides a simpler configuration for Claude Desktop.
+
+#### Option 2: Manual Installation
+
+##### Windows
 
 1. **Clone or download the repository:**
    ```bash
@@ -41,6 +53,14 @@ This Model Context Protocol (MCP) server provides a comprehensive interface for 
    ```
 
 #### macOS
+
+For the NPM installation method, simply run:
+
+```bash
+npm install -g jasondsmith72/CWM-API-Gateway-MCP
+```
+
+For manual installation:
 
 1. **Install Python 3.10+ if not already installed:**
    ```bash
@@ -71,6 +91,14 @@ This Model Context Protocol (MCP) server provides a comprehensive interface for 
    ```
 
 #### Linux (Ubuntu/Debian)
+
+For the NPM installation method, simply run:
+
+```bash
+sudo npm install -g jasondsmith72/CWM-API-Gateway-MCP
+```
+
+For manual installation:
 
 1. **Install Python 3.10+ if not already installed:**
    ```bash
@@ -160,7 +188,42 @@ The final HTTP headers sent with every request will look like:
 
 ## Configuration for Claude Desktop
 
-To integrate with Claude Desktop, add the following to your configuration file (`claude_desktop_config.json`):
+There are two methods to integrate with Claude Desktop:
+
+### Method 1: Using NPM Package (Recommended)
+
+Install the package using NPM:
+
+```bash
+npm install -g jasondsmith72/CWM-API-Gateway-MCP
+```
+
+Then configure Claude Desktop (`claude_desktop_config.json`):
+
+```json
+{
+  "mcpServers": {
+    "CWM-API-Gateway-MCP": {
+      "command": "npx",
+      "args": [
+        "-y",
+        "@jasondsmith72/CWM-API-Gateway-MCP"
+      ],
+      "env": {
+        "CONNECTWISE_API_URL": "https://your-instance.connectwise.com/v4_6_release/apis/3.0",
+        "CONNECTWISE_COMPANY_ID": "your_company_id",
+        "CONNECTWISE_PUBLIC_KEY": "your_public_key",
+        "CONNECTWISE_PRIVATE_KEY": "your_private_key",
+        "CONNECTWISE_AUTH_PREFIX": "yourprefix+"
+      }
+    }
+  }
+}
+```
+
+### Method 2: Using Direct Python Script Path
+
+If you prefer to use the Python script directly:
 
 ```json
 {
@@ -203,6 +266,10 @@ For macOS and Linux, use the appropriate path format:
 The server can be run directly from the command line for testing:
 
 ```bash
+# If installed via NPM
+cwm-api-gateway-mcp
+
+# Or using the Python script directly
 # On Windows
 python api_gateway_server.py
 
