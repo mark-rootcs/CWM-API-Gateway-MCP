@@ -221,7 +221,29 @@ Then configure Claude Desktop (`claude_desktop_config.json`):
 }
 ```
 
-### Method 2: Using Direct Python Script Path
+### Method 2: Using Node.js Script (Alternate Method)
+
+If you've cloned the repository and installed the dependencies, you can use the included Node.js script:
+
+```json
+{
+  "mcpServers": {
+    "CWM-API-Gateway-MCP": {
+      "command": "node",
+      "args": ["C:/path/to/CWM-API-Gateway-MCP/bin/server.js"],
+      "env": {
+        "CONNECTWISE_API_URL": "https://your-instance.connectwise.com/v4_6_release/apis/3.0",
+        "CONNECTWISE_COMPANY_ID": "your_company_id",
+        "CONNECTWISE_PUBLIC_KEY": "your_public_key",
+        "CONNECTWISE_PRIVATE_KEY": "your_private_key",
+        "CONNECTWISE_AUTH_PREFIX": "yourprefix+"
+      }
+    }
+  }
+}
+```
+
+### Method 3: Using Direct Python Script Path
 
 If you prefer to use the Python script directly:
 
@@ -268,6 +290,9 @@ The server can be run directly from the command line for testing:
 ```bash
 # If installed via NPM
 cwm-api-gateway-mcp
+
+# If using the Node.js script (after cloning the repository)
+node bin/server.js
 
 # Or using the Python script directly
 # On Windows
