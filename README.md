@@ -313,13 +313,21 @@ The Fast Memory feature allows you to save and retrieve frequently used API quer
 - **Time Savings:** Quickly execute complex API calls without remembering exact endpoints or parameters
 - **Error Reduction:** Reuse successful API calls to minimize potential errors
 - **Adaptive Learning:** The system learns which API calls are most valuable to you
+- **Parameter Persistence:** Parameters and request bodies are stored for future use
 
 ### How It Works
 
-1. **Automatic Learning:** When you execute a successful API call, you'll be prompted to save it to Fast Memory
+1. **Automatic Learning:** When you execute a successful API call, you're prompted to save it to Fast Memory
 2. **Intelligent Retrieval:** The next time you use the same API endpoint, the system checks Fast Memory first
-3. **Parameter Reuse:** If you don't provide parameters for a call, the system uses those saved in Fast Memory
+3. **Parameter Reuse:** If you don't provide parameters for a call, the system automatically uses those saved in Fast Memory
 4. **Usage Tracking:** The system tracks how often each query is used and prioritizes frequently used queries
+
+### Fast Memory Functionality
+
+- **Automatic Parameter Suggestion:** The system will suggest parameters from Fast Memory if none are provided
+- **Usage Counter:** Each time a query from Fast Memory is used, its usage count increases
+- **Search Capability:** Search through your saved queries by description or endpoint path
+- **Prioritization:** Queries are displayed in order of usage frequency, with most frequently used queries at the top
 
 ### Managing Your Fast Memory
 
@@ -327,6 +335,25 @@ The Fast Memory feature allows you to save and retrieve frequently used API quer
 - **Search Specific Queries:** `list_fast_memory("search term")`
 - **Delete a Query:** `delete_from_fast_memory(query_id)`
 - **Clear All Queries:** `clear_fast_memory()`
+
+### Fast Memory Technical Details
+
+The Fast Memory system is powered by a SQLite database (`fast_memory_api.db`) that stores:
+
+- Query paths and methods
+- Parameters and request bodies as JSON
+- Usage metrics and timestamps
+- User-friendly descriptions
+
+The database structure includes:
+- `id`: Unique identifier for each saved query
+- `description`: User-provided description of what the query does
+- `path`: API endpoint path
+- `method`: HTTP method (GET, POST, PUT, etc.)
+- `params`: Query parameters in JSON format
+- `data`: Request body in JSON format
+- `timestamp`: When the query was last used
+- `usage_count`: How many times the query has been used
 
 ## Troubleshooting
 
