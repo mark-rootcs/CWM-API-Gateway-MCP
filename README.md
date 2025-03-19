@@ -52,8 +52,9 @@ This Model Context Protocol (MCP) server provides a comprehensive interface for 
    CONNECTWISE_COMPANY_ID=your_company_id
    CONNECTWISE_PUBLIC_KEY=your_public_key
    CONNECTWISE_PRIVATE_KEY=your_private_key
-   CONNECTWISE_AUTH_PREFIX=yourprefix+  # Optional: defaults to "microtech+"
+   CONNECTWISE_AUTH_PREFIX=yourprefix+  # Optional: prefix added before public key in auth header
    ```
+   Note: `CONNECTWISE_AUTH_PREFIX` is used to form the username for basic authentication. If your ConnectWise API integration requires a specific prefix before the public key, set it here. If not needed, you can leave it blank.
 
 ## Configuration for Claude Desktop
 
