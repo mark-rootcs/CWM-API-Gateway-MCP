@@ -151,7 +151,7 @@ This step only needs to be done once, or whenever the ConnectWise API definition
 
 Set the following environment variables with your ConnectWise credentials:
 ```
-CONNECTWISE_API_URL=https://your-instance.connectwise.com/v4_6_release/apis/3.0
+CONNECTWISE_API_URL=https://na.myconnectwise.net/v4_6_release/apis/3.0
 CONNECTWISE_COMPANY_ID=your_company_id
 CONNECTWISE_PUBLIC_KEY=your_public_key
 CONNECTWISE_PRIVATE_KEY=your_private_key
@@ -162,7 +162,7 @@ These credentials are used in the authentication process as follows:
 
 - **CONNECTWISE_API_URL**: The base URL for all API requests to your ConnectWise instance
   ```
-  url = f"{API_URL}{endpoint}"  # e.g., https://your-instance.connectwise.com/v4_6_release/apis/3.0/service/tickets
+  url = f"{API_URL}{endpoint}"  # e.g., https://na.myconnectwise.net/v4_6_release/apis/3.0/service/tickets
   ```
 
 - **CONNECTWISE_COMPANY_ID**: Included in the 'clientId' header of each request to identify your company
@@ -210,7 +210,7 @@ Then configure Claude Desktop (`claude_desktop_config.json`):
         "@jasondsmith72/CWM-API-Gateway-MCP"
       ],
       "env": {
-        "CONNECTWISE_API_URL": "https://your-instance.connectwise.com/v4_6_release/apis/3.0",
+        "CONNECTWISE_API_URL": "https://na.myconnectwise.net/v4_6_release/apis/3.0",
         "CONNECTWISE_COMPANY_ID": "your_company_id",
         "CONNECTWISE_PUBLIC_KEY": "your_public_key",
         "CONNECTWISE_PRIVATE_KEY": "your_private_key",
@@ -232,7 +232,7 @@ If you've cloned the repository and installed the dependencies, you can use the 
       "command": "node",
       "args": ["C:/path/to/CWM-API-Gateway-MCP/bin/server.js"],
       "env": {
-        "CONNECTWISE_API_URL": "https://your-instance.connectwise.com/v4_6_release/apis/3.0",
+        "CONNECTWISE_API_URL": "https://na.myconnectwise.net/v4_6_release/apis/3.0",
         "CONNECTWISE_COMPANY_ID": "your_company_id",
         "CONNECTWISE_PUBLIC_KEY": "your_public_key",
         "CONNECTWISE_PRIVATE_KEY": "your_private_key",
@@ -254,7 +254,7 @@ If you prefer to use the Python script directly:
       "command": "python",
       "args": ["C:/path/to/CWM-API-Gateway-MCP/api_gateway_server.py"],
       "env": {
-        "CONNECTWISE_API_URL": "https://your-instance.connectwise.com/v4_6_release/apis/3.0",
+        "CONNECTWISE_API_URL": "https://na.myconnectwise.net/v4_6_release/apis/3.0",
         "CONNECTWISE_COMPANY_ID": "your_company_id",
         "CONNECTWISE_PUBLIC_KEY": "your_public_key",
         "CONNECTWISE_PRIVATE_KEY": "your_private_key",
@@ -274,7 +274,7 @@ For macOS and Linux, use the appropriate path format:
       "command": "python3",
       "args": ["/path/to/CWM-API-Gateway-MCP/api_gateway_server.py"],
       "env": {
-        "CONNECTWISE_API_URL": "https://your-instance.connectwise.com/v4_6_release/apis/3.0",
+        "CONNECTWISE_API_URL": "https://na.myconnectwise.net/v4_6_release/apis/3.0",
         "CONNECTWISE_COMPANY_ID": "your_company_id",
         "CONNECTWISE_PUBLIC_KEY": "your_public_key",
         "CONNECTWISE_PRIVATE_KEY": "your_private_key",
